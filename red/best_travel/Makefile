@@ -1,7 +1,7 @@
 # Compilation
 NAME 	= best_travel
 CC 		= cc
-CFLAGS 	= -Wextra -Wall -Werror
+#CFLAGS 	= -Wextra -Wall -Werror
 #DEBUG 	= -g -fsanitize=address
 
 # Clean
@@ -11,7 +11,7 @@ RM = rm -rf
 SRC =	is_input_valid.c \
 		main.c
 
-OBJ	=	$(SRC:.cpp=.o)
+OBJ	=	$(SRC:.c=.o)
 
 # Colors
 GREEN	:= \x1b[32m
