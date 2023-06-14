@@ -10,7 +10,7 @@
 #define ERR_INVALID_TOWN_NUMBER
 #define ERR_INVALID_LIST
 
-#define VALID_INPUT_EXAMPLE "Please provide: <maxium_sum _of_distance> <number_of_towns_to_visit> <list of distances>\n"
+#define VALID_INPUT_EXAMPLE "Please provide: <maxium_sum_of_distance> <number_of_towns_to_visit> <list of distances>\n"
 
 //Functions//
 
