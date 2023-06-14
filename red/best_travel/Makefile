@@ -8,7 +8,8 @@ CFLAGS 	= -Wextra -Wall -Werror
 RM = rm -rf
 
 # Source and object files
-SRC =	is_input_valid.c \
+SRC =	choose_best_sum.c \
+		is_input_valid.c \
 		main.c
 
 OBJ	=	$(SRC:.c=.o)
