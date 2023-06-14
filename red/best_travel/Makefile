@@ -8,7 +8,8 @@ CFLAGS 	= -Wextra -Wall -Werror
 RM = rm -rf
 
 # Source and object files
-SRC =	main.cpp
+SRC =	is_input_valid.c \
+		main.c
 
 OBJ	=	$(SRC:.cpp=.o)
 
