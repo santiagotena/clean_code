@@ -1,7 +1,6 @@
 To implement:
 
 [ ] Parsing
-    [ ] empty or argv[1] == help
     [ ] argc
     [ ] positive t and k
     [ ] ls positive and at least one element
