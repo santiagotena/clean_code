@@ -1,7 +1,7 @@
 # Compilation
 NAME 	= best_travel
 CC 		= cc
-#CFLAGS 	= -Wextra -Wall -Werror
+CFLAGS 	= -Wextra -Wall -Werror
 #DEBUG 	= -g -fsanitize=address
 
 # Clean
