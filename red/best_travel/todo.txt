@@ -1,8 +1,8 @@
 To implement:
-
 [ ] Parsing
-    [ ] argc
-    [ ] positive t and k
+    [x] argc
+    [x] non-negative t
+    [x] positive k
     [ ] ls positive and at least one element
 [ ] choose_best_sum();
     [ ] Return -1 in case of failure
@@ -10,3 +10,7 @@ To implement:
     [ ] Informs in case of failure
     [ ] Max distance
     [ ] List paired with indexes
+
+Post-implementation
+[ ] Refactor
+[ ] Evaluate Red Principles
