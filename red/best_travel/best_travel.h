@@ -25,7 +25,7 @@ typedef struct s_parameters
 
 //Functions//
 //Parsing
-bool    is_input_valid(int argc, char **argv, t_parameters parameters);
+bool    is_input_valid(int argc, char **argv, t_parameters *parameters);
 
 //Core
 int     choose_best_sum(unsigned int maximum_sum_of_distances, unsigned int number_of_towns_to_visit, int *list_of_distances);
