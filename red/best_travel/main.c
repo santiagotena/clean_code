@@ -7,6 +7,6 @@ int main(int argc, char **argv) {
         return (-1);
 
 
-
+    free(parameters.list_of_distances);
     return (0);
 }
