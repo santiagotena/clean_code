@@ -1,30 +1,5 @@
 #include "best_travel.h"
 
-char **split(char *str, const char *delim, int *count) {
-    char *copy = strdup(str);
-    char **tokens = NULL;
-    char *token = strtok(copy, delim);
-    *count = 0;
-
-    while (token != NULL) {
-        (*count)++;
-        tokens = realloc(tokens, sizeof(char*) * (*count));
-        tokens[(*count) - 1] = strdup(token);
-        token = strtok(NULL, delim);
-    }
-
-    free(copy);
-    return tokens;
-}
-
-void free_tokens(char** tokens, int count) {
-    for (int i = 0; i < count; i++) {
-        free(tokens[i]);
-    }
-    free(tokens);
-}
-
-
 bool    is_input_valid(int argc, char **argv, t_parameters *parameters) {
     if (argc < 4) {
         printf("%s%s", ERR_INVALID_ARGC, VALID_INPUT_EXAMPLE);
@@ -43,17 +18,14 @@ bool    is_input_valid(int argc, char **argv, t_parameters *parameters) {
         return (false);
     }
 
-    int count;
-    char **tokens = split(argv[3], ", ", &count);
-    for (int i = 0; i < count; i++) {
-        parameters->list_of_distances[i] = atoi(tokens[i]);
+    int index = 0;
+    int list_size = argc - 3;
+    parameters->list_of_distances = calloc(list_size, sizeof (int));
+    for (int i = 3; i < argc; i++) {
+        parameters->list_of_distances[index] = atoi(argv[i]);
+        index++;
     }
-    free_tokens(tokens, count);
-    if (parameters->list_of_distances == NULL){
-        printf("%s%s", ERR_INVALID_LIST, VALID_INPUT_EXAMPLE);
-        return (false);
-    }
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < list_size; i++) {
         if (parameters->list_of_distances[i] < 0) {
             printf("%s%s", ERR_INVALID_LIST, VALID_INPUT_EXAMPLE);
             return (false);
