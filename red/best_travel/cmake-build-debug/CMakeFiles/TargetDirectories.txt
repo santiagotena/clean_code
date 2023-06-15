@@ -1,0 +1,3 @@
+/Users/santiago/Code/github/clean_code/red/best_travel/cmake-build-debug/CMakeFiles/best_travel.dir
+/Users/santiago/Code/github/clean_code/red/best_travel/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/santiago/Code/github/clean_code/red/best_travel/cmake-build-debug/CMakeFiles/rebuild_cache.dir
