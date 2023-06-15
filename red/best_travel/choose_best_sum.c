@@ -3,7 +3,7 @@
 void    recursion(t_parameters *parameters, t_sum *sum) {
     if (sum->k < sum->n) {
         for (int i = 0; i <= (sum->m - sum->n); i++) {
-            sum->current_sum = parameters->list_of_distances[i + sum->k];
+            sum->current_sum += parameters->list_of_distances[i + sum->k];
         }
         sum->k++;
         recursion(parameters, sum);
@@ -32,16 +32,3 @@ int     choose_best_sum(t_parameters *parameters) {
 
     return (sum.highest_sum);
 }
-
-//recurision(param, k ,n) {
-//    if (k < n) {
-//        for (i <= m-n; i++)
-//            current = arr[i+k]; //Current index
-//        k++;
-//        recursion(param, k, n);
-//    }
-//    else {
-//        if (current > high && current <= max)
-//            high = current; // Save index
-//    }
-//}
