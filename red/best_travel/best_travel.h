@@ -26,6 +26,7 @@ typedef struct  s_parameters {
 typedef struct  s_sum {
     int         highest_sum;
     int         current_sum;
+    int         i;
     int         k;
     int         m;
     int         n;
