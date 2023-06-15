@@ -1,27 +1,47 @@
 #include "best_travel.h"
 
-int     choose_best_sum(t_parameters *parameters) {
-    int     current_sum = 0;
-    int     highest_sum = 0;
-//    int     *taken_indexes[parameters->number_of_towns_to_visit];
+void    recursion(t_parameters *parameters, t_sum *sum) {
+    if (sum->k < sum->n) {
+        for (int i = 0; i <= (sum->m - sum->n); i++) {
+            sum->current_sum = parameters->list_of_distances[i + sum->k];
+        }
+        sum->k++;
+        recursion(parameters, sum);
+    }
+    else {
+        if (sum->current_sum > sum->highest_sum &&
+            sum->current_sum <= parameters->maximum_sum_of_distances)
+            sum->highest_sum = sum->current_sum;
+    }
+}
 
+int     choose_best_sum(t_parameters *parameters) {
     if (parameters->list_of_distances_size < (int)parameters->number_of_towns_to_visit) {
         printf(ERR_NOT_ENOUGH_DISTANCES);
         return (-1);
     }
 
-    for (int i = 0; i < parameters->number_of_towns_to_visit ; i++) {
-        current_sum += parameters->list_of_distances[i];
+    t_sum   sum;
+    sum.highest_sum = 0;
+    sum.current_sum = 0;
+    sum.k = 0;
+    sum.m = parameters->list_of_distances_size;
+    sum.n = parameters->number_of_towns_to_visit;
 
-        for (int j = 0; j < parameters->list_of_distances_size; j++) {
-            current_sum += parameters->list_of_distances[j];
-        }
+    recursion(parameters, &sum);
 
-        if (highest_sum == parameters->maximum_sum_of_distances)
-            return (highest_sum);
-        if (current_sum > highest_sum)
-            highest_sum = current_sum;
-        current_sum = 0;
-    }
-    return (highest_sum);
+    return (sum.highest_sum);
 }
+
+//recurision(param, k ,n) {
+//    if (k < n) {
+//        for (i <= m-n; i++)
+//            current = arr[i+k]; //Current index
+//        k++;
+//        recursion(param, k, n);
+//    }
+//    else {
+//        if (current > high && current <= max)
+//            high = current; // Save index
+//    }
+//}
