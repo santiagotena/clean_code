@@ -4,17 +4,16 @@ To implement:
     [x] non-negative t
     [x] positive k
     [x] ls are all positive and at least one element
-[ ] choose_best_sum();
-    [ ] Return -1 in case of number_of_towns < size of list_of_distance
-    [ ] Return -1 in case of failure
-[ ] Print results
-    [ ] Informs in case of failure
-    [ ] Max distance
-    [ ] Number of cities
-    [ ] List paired with indexes
-[ ] Free memory
+[x] choose_best_sum();
+    [x] Return -1 in case of number_of_towns < size of list_of_distance
+    [x] Return -1 in case of failure
+    [ ] Make it functional
+[x] Print results
+    [x] Informs in case of failure
+    [x] Max distance
+[x] Free memory
     [x] list_of_cities
 
-Post-implementation
+Post-implementation:
 [ ] Refactor
 [ ] Evaluate Red Principles
