@@ -9,6 +9,7 @@ RM = rm -rf
 
 # Source and object files
 SRC =	choose_best_sum.c \
+		display_results.c \
 		is_input_valid.c \
 		main.c
 
