@@ -6,8 +6,8 @@ a.out
 *.o
 
 #CMake
-CMakeLists.txt
-cmake-build-debug
+#CMakeLists.txt
+#cmake-build-debug
 
 # Misc
 .vscode
