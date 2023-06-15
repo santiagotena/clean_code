@@ -17,11 +17,19 @@
 
 //Structs//
 typedef struct  s_parameters {
-    int    maximum_sum_of_distances;
-    int    number_of_towns_to_visit;
-    int             *list_of_distances;
-    int             list_of_distances_size;
+    int         maximum_sum_of_distances;
+    int         number_of_towns_to_visit;
+    int         *list_of_distances;
+    int         list_of_distances_size;
 }               t_parameters;
+
+typedef struct  s_sum {
+    int         highest_sum;
+    int         current_sum;
+    int         k;
+    int         m;
+    int         n;
+}               t_sum;
 
 //Functions//
 //Parsing
