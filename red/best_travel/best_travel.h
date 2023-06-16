@@ -16,22 +16,17 @@
 #define VALID_INPUT_EXAMPLE         "Please provide: <maxium_sum_of_distances> <number_of_towns_to_visit> <list_of_distances>\n"
 
 //Structs//
-typedef struct  s_parameters {
+typedef struct  s_input {
     int         maximum_sum_of_distances;
     int         number_of_towns_to_visit;
     int         *list_of_distances;
     int         list_of_distances_size;
-}               t_parameters;
-
-typedef struct  s_sum {
-    int         highest_sum;
-    int         current_sum;
-}               t_sum;
+}               t_input;
 
 //Functions//
 //Parsing
-bool    is_input_valid(int argc, char **argv, t_parameters *parameters);
+bool    is_input_valid(int argc, char **argv, t_input *input);
 //Calculate
-int     choose_best_sum(t_parameters *parameters);
+int     choose_best_sum(t_input *input);
 //Display Results
 void    display_results(int max_distance);

@@ -1,7 +1,7 @@
 #include "best_travel.h"
 
-bool    are_enough_distances_listed(t_parameters *parameters) {
-    if (parameters->list_of_distances_size >= parameters->number_of_towns_to_visit)
+bool    are_enough_distances_listed(t_input *input) {
+    if (input->list_of_distances_size >= input->number_of_towns_to_visit)
         return (true);
     return (false);
 }
@@ -40,16 +40,16 @@ bool    is_maximum_sum_of_distances_matched(int current_sum, int max_distance) {
     return (false);
 }
 
-int     choose_best_sum(t_parameters *parameters) {
-    if (!are_enough_distances_listed(parameters))
+int     choose_best_sum(t_input *input) {
+    if (!are_enough_distances_listed(input))
         return (-1);
 
     int     current_sum = 0;
     int     highest_sum = 0;
-    int     *arr = parameters->list_of_distances;
-    int     size = parameters->list_of_distances_size;
-    int     number_of_towns = parameters->number_of_towns_to_visit;
-    int     max_distance = parameters->maximum_sum_of_distances;
+    int     *arr = input->list_of_distances;
+    int     size = input->list_of_distances_size;
+    int     number_of_towns = input->number_of_towns_to_visit;
+    int     max_distance = input->maximum_sum_of_distances;
     int     count[size];
     for (int i = 0; i < size; i++) {
         count[i] = 0;
