@@ -7,16 +7,13 @@ void    swap(int* a, int* b) {
 }
 
 int     choose_best_sum(t_parameters *parameters) {
-    if (parameters->list_of_distances_size < (int)parameters->number_of_towns_to_visit) {
-        printf(ERR_NOT_ENOUGH_DISTANCES);
+    if (parameters->list_of_distances_size < parameters->number_of_towns_to_visit)
         return (-1);
-    }
 
     int current_sum = 0;
     int highest_sum = 0;
     int *arr = parameters->list_of_distances;
     int size = parameters->list_of_distances_size;
-
     int count[size];
     for (int i = 0; i < size; i++) {
         count[i] = 0;
@@ -25,6 +22,7 @@ int     choose_best_sum(t_parameters *parameters) {
     int i = 0;
     while (i < size) {
         if (count[i] < i) {
+
             if (i % 2 == 0) {
                 swap(&arr[0], &arr[i]);
             } else {
@@ -43,7 +41,6 @@ int     choose_best_sum(t_parameters *parameters) {
                 return (current_sum);
 
             current_sum = 0;
-
             count[i]++;
             i = 0;
         } else {
