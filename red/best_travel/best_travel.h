@@ -26,17 +26,12 @@ typedef struct  s_parameters {
 typedef struct  s_sum {
     int         highest_sum;
     int         current_sum;
-    int         i;
-    int         k;
-    int         m;
-    int         n;
-    int         s;
 }               t_sum;
 
 //Functions//
 //Parsing
 bool    is_input_valid(int argc, char **argv, t_parameters *parameters);
-//Core
+//Calculate
 int     choose_best_sum(t_parameters *parameters);
 //Display Results
 void    display_results(int max_distance);
