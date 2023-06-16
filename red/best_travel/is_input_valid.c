@@ -29,8 +29,7 @@ bool    are_enough_towns_to_visit(char **argv, t_parameters *parameters) {
 void    assign_list_of_distances(int argc, char **argv, t_parameters *parameters) {
     int index = 0;
     parameters->list_of_distances_size = argc - 3;
-    int list_size = parameters->list_of_distances_size;
-    parameters->list_of_distances = calloc(list_size, sizeof (int));
+    parameters->list_of_distances = calloc(parameters->list_of_distances_size, sizeof (int));
     for (int i = 3; i < argc; i++) {
         parameters->list_of_distances[index] = atoi(argv[i]);
         index++;
@@ -39,8 +38,7 @@ void    assign_list_of_distances(int argc, char **argv, t_parameters *parameters
 
 bool    distances_are_valid(int argc, char **argv, t_parameters *parameters) {
     assign_list_of_distances(argc, argv, parameters);
-    int list_size = parameters->list_of_distances_size;
-    for (int i = 0; i < list_size; i++) {
+    for (int i = 0; i < parameters->list_of_distances_size; i++) {
         if (parameters->list_of_distances[i] < 0) {
             printf("%s%s", ERR_INVALID_LIST, VALID_INPUT_EXAMPLE);
             return (false);
