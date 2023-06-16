@@ -92,3 +92,10 @@
 47	80	1686827946303034964	best_travel	44c592668ebfc28c
 0	34	1686828119266720197	CMakeFiles/best_travel.dir/choose_best_sum.c.o	48a47b2af7a92d1e
 34	66	1686828119299864050	best_travel	44c592668ebfc28c
+4	156	1686852253918057961	CMakeFiles/best_travel.dir/choose_best_sum.c.o	48a47b2af7a92d1e
+5	156	1686852253918056586	CMakeFiles/best_travel.dir/display_results.c.o	e50afc68ee8d4de8
+5	157	1686852253918596753	CMakeFiles/best_travel.dir/is_input_valid.c.o	c06d8116a2a18921
+6	157	1686852253918058169	CMakeFiles/best_travel.dir/main.c.o	df21f000adeb5faf
+157	196	1686852253960259689	best_travel	44c592668ebfc28c
+1	134	1686852465698475935	CMakeFiles/best_travel.dir/choose_best_sum.c.o	48a47b2af7a92d1e
+134	168	1686852465734737363	best_travel	44c592668ebfc28c

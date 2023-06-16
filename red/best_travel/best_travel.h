@@ -30,6 +30,7 @@ typedef struct  s_sum {
     int         k;
     int         m;
     int         n;
+    int         s;
 }               t_sum;
 
 //Functions//
