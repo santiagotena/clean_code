@@ -7,7 +7,7 @@ To implement:
 [x] choose_best_sum();
     [x] Return -1 in case of number_of_towns < size of list_of_distance
     [x] Return -1 in case of failure
-    [ ] Make it functional
+    [x] Make it functional
 [x] Print results
     [x] Informs in case of failure
     [x] Max distance
@@ -21,4 +21,13 @@ Post-implementation:
 Notes:
     Testing conditions:
     ./best_travel 174 3 50 55 57 58 60
-    162, 163, 165, 165, 167, 168, 170, 172, 173, 175.
+    result: 173
+
+    ./best_travel 163 3 50 55 56 57 58
+    result: 163
+
+    ./best_travel 163 3 50
+    result: -1 (Error)
+
+    ./best_travel 230 3 91 74 73 85 73 81 87
+    result: 228
