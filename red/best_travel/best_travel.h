@@ -8,7 +8,7 @@
 
 //Macros//
 #define ERR_INVALID_ARGC            "Error: Invalid number of arguments\n"
-#define ERR_INVALID_MAX_DISTANCE    "Error: The maximum sum of distances must be greater than zero.\n"
+#define ERR_INVALID_MAX_DISTANCE    "Error: The maximum sum of distances must be at least zero.\n"
 #define ERR_INVALID_TOWN_NUMBER     "Error: The number of towns to visit must be at least 1.\n"
 #define ERR_INVALID_LIST            "Error: No negative numbers are allowed in the list_of_distances\n"
 #define ERR_NOT_ENOUGH_DISTANCES    "Error: There were not enough distances provided.\n"
