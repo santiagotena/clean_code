@@ -1,7 +1,7 @@
 #include "best_travel.h"
 
 bool    are_enough_distances_listed(t_input *input) {
-    if (input->list_of_distances_size >= input->number_of_towns_to_visit)
+    if (input->distances_size >= input->towns_to_visit)
         return (true);
     return (false);
 }
@@ -34,10 +34,8 @@ int     update_highest_sum(int current_sum, int highest_sum, int max_distance) {
     return (highest_sum);
 }
 
-bool    is_maximum_sum_of_distances_matched(int current_sum, int max_distance) {
-    if (current_sum == max_distance)
-        return (true);
-    return (false);
+bool    is_max_distance_matched(int current_sum, int max_distance) {
+    return (current_sum == max_distance);
 }
 
 int     choose_best_sum(t_input *input) {
@@ -46,22 +44,18 @@ int     choose_best_sum(t_input *input) {
 
     int     current_sum = 0;
     int     highest_sum = 0;
-    int     *arr = input->list_of_distances;
-    int     size = input->list_of_distances_size;
-    int     number_of_towns = input->number_of_towns_to_visit;
-    int     max_distance = input->maximum_sum_of_distances;
-    int     count[size];
-    for (int i = 0; i < size; i++) {
+    int     count[input->distances_size];
+    for (int i = 0; i < input->distances_size; i++) {
         count[i] = 0;
     }
 
     int i = 0;
-    while (i < size) {
+    while (i < input->distances_size) {
         if (count[i] < i) {
-            rearrange_array(i, arr, count);
-            current_sum = sum_distances(current_sum, arr, number_of_towns);
-            highest_sum = update_highest_sum(current_sum, highest_sum, max_distance);
-            if (is_maximum_sum_of_distances_matched(current_sum, max_distance))
+            rearrange_array(i, input->distances, count);
+            current_sum = sum_distances(current_sum, input->distances, input->towns_to_visit);
+            highest_sum = update_highest_sum(current_sum, highest_sum, input->max_distance);
+            if (is_max_distance_matched(current_sum, input->max_distance))
                 return (current_sum);
             current_sum = 0;
             count[i]++;
