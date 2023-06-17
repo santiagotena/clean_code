@@ -15,11 +15,16 @@ To implement:
     [x] list_of_cities
 
 Post-implementation:
+[x] Testing
+    [x] Run tests
+    [x] Test leaks
 [x] Refactor
-[ ] Evaluate Red Principles
+[x] Testing
+    [x] Run tests
+    [x] Test leaks
+[x] Evaluate Red Principles
 
-Notes:
-    Testing conditions:
+Tests to run:
     ./best_travel 174 3 50 55 57 58 60
     result: 173
 
