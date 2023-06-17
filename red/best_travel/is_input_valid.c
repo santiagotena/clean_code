@@ -41,6 +41,7 @@ bool    distances_are_valid(int argc, char **argv, t_input *input) {
     for (int i = 0; i < input->distances_size; i++) {
         if (input->distances[i] < 0) {
             printf("%s%s", ERR_INVALID_LIST, VALID_INPUT_EXAMPLE);
+            free(input->distances);
             return (false);
         }
     }
