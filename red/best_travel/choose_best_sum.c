@@ -1,9 +1,7 @@
 #include "best_travel.h"
 
 bool    are_enough_distances_listed(t_input *input) {
-    if (input->distances_size >= input->towns_to_visit)
-        return (true);
-    return (false);
+    return (input->distances_size >= input->towns_to_visit);
 }
 
 void    swap(int* a, int* b) {
