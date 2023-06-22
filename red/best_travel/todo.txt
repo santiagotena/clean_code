@@ -36,6 +36,11 @@ Max distance: 163
 Error: There were not enough distances provided.
 Max distance: 228
 
+// Small max distance
+./best_travel 50 3 91 74 73 85 73 81 87
+
+Error: No sum was found.
+
 // Parsing error conditions
 ./best_travel
 ./best_travel -1 3 91 74 73 85 73 81 87
