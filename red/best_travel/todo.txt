@@ -1,4 +1,4 @@
-To implement:
+// To implement //
 [x] Parsing
     [x] argc
     [x] non-negative t
@@ -14,7 +14,7 @@ To implement:
 [x] Free memory
     [x] list_of_cities
 
-Post-implementation:
+// Post-implementation //
 [x] Testing
     [x] Run tests
     [x] Test leaks
@@ -24,21 +24,19 @@ Post-implementation:
     [x] Test leaks
 [x] Evaluate Red Principles
 
-Tests to run:
-    ./best_travel 174 3 50 55 57 58 60
-    result: 173
+// Tests to run //
+// Regular tests
+./best_travel 174 3 50 55 57 58 60
+result: 173
+./best_travel 163 3 50 55 56 57 58
+result: 163
+./best_travel 163 3 50
+result: -1 (Error)
+./best_travel 230 3 91 74 73 85 73 81 87
+result: 228
 
-    ./best_travel 163 3 50 55 56 57 58
-    result: 163
-
-    ./best_travel 163 3 50
-    result: -1 (Error)
-
-    ./best_travel 230 3 91 74 73 85 73 81 87
-    result: 228
-
-    Parsing error conditions:
-    ./best_travel
-    ./best_travel -1 3 91 74 73 85 73 81 87
-    ./best_travel 230 0 91 74 73 85 73 81 87
-    ./best_travel 230 1 91 74 73 85 73 -81 87
+// Parsing error conditions
+./best_travel
+./best_travel -1 3 91 74 73 85 73 81 87
+./best_travel 230 0 91 74 73 85 73 81 87
+./best_travel 230 3 91 74 73 85 73 -81 87
