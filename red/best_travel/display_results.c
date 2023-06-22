@@ -6,5 +6,4 @@ void    display_results(int max_distance) {
         return;
     }
     printf("Max distance: %i\n", max_distance);
-
 }
