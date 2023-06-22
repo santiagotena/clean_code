@@ -27,16 +27,22 @@
 // Tests to run //
 // Regular tests
 ./best_travel 174 3 50 55 57 58 60
-result: 173
 ./best_travel 163 3 50 55 56 57 58
-result: 163
 ./best_travel 163 3 50
-result: -1 (Error)
 ./best_travel 230 3 91 74 73 85 73 81 87
-result: 228
+
+Max distance: 173
+Max distance: 163
+Error: There were not enough distances provided.
+Max distance: 228
 
 // Parsing error conditions
 ./best_travel
 ./best_travel -1 3 91 74 73 85 73 81 87
 ./best_travel 230 0 91 74 73 85 73 81 87
 ./best_travel 230 3 91 74 73 85 73 -81 87
+
+Error: Invalid number of arguments.
+Error: The maximum sum of distances must be at least zero.
+Error: The number of towns to visit must be at least 1.
+Error: No negative numbers are allowed in the distances list.
