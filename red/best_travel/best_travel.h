@@ -12,6 +12,7 @@
 #define ERR_INVALID_TOWN_NUMBER     "Error: The number of towns to visit must be at least 1.\n"
 #define ERR_INVALID_LIST            "Error: No negative numbers are allowed in the distances list.\n"
 #define ERR_NOT_ENOUGH_DISTANCES    "Error: There were not enough distances provided.\n"
+#define ERR_SUM_NOT_FOUND           "Error: No sum was found.\n"
 
 #define VALID_INPUT_EXAMPLE         "Please input:\n./best_travel <maximum_sum_of_distances> <number_of_towns_to_visit> <distances_list>\n"
 

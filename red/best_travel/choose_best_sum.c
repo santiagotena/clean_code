@@ -38,7 +38,7 @@ bool    is_max_distance_matched(int current_sum, int max_distance) {
 
 int     calculate_highest_sum(t_input *input) {
     int     current_sum = 0;
-    int     highest_sum = 0;
+    int     highest_sum = -1;
     int     count[input->distances_size];
     for (int i = 0; i < input->distances_size; i++)
         count[i] = 0;
@@ -64,6 +64,6 @@ int     calculate_highest_sum(t_input *input) {
 
 int     choose_best_sum(t_input *input) {
     if (!are_enough_distances_listed(input))
-        return (-1);
+        return (-2);
     return (calculate_highest_sum(input));
 }
