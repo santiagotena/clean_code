@@ -1,0 +1,42 @@
+:root {
+    font-size: 16px;
+    font-family: 'system-ui', sans-serif;
+    --text-primary: black;
+    --text-secondary: white;
+    --bg--header: brown;
+    --bg--catalogue: rgb(250, 235, 230);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+/*Header styling*/
+.header {
+    background: var(--bg--header);
+    color: var(--text-secondary);
+    height: 10%;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+/*Content styling*/
+.content {
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    grid-template-rows: repeat(3, 1fr);
+    grid-auto-rows: 250px;
+    gap: 2rem 2rem;
+    padding: 2rem;
+    background: var(--bg--catalogue);
+    height: 90%;
+    width: 100vw;
+}
