@@ -18,17 +18,17 @@ class romanConversion {
         this._romanNumeral = _romanNumeral;
     }
 
-    updateCurrentValue(i): void {
+    private _updateCurrentValue(i): void {
         const currentSymbol: string = this._romanNumeral[i];
         this._currentValue = romanValues[currentSymbol];
     }
 
-    updateNextValue(i): void {
+    private _updateNextValue(i): void {
         const nextSymbol: string = this._romanNumeral[i + 1];
         this._nextValue = romanValues[nextSymbol];
     }
 
-    updateResult(): void {
+    private _updateResult(): void {
         if (this._nextValue && this._currentValue < this._nextValue) {
             this._result -= this._currentValue;
         } else {
@@ -39,9 +39,9 @@ class romanConversion {
     romanToDecimal = (): number => {
         this._result = 0;
         for (let i = 0; i < this._romanNumeral.length; i++) {
-            this.updateCurrentValue(i);
-            this.updateNextValue(i);
-            this.updateResult();
+            this._updateCurrentValue(i);
+            this._updateNextValue(i);
+            this._updateResult();
         }
         return this._result;
     }

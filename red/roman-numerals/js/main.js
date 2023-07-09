@@ -12,23 +12,23 @@ class romanConversion {
         this.romanToDecimal = () => {
             this._result = 0;
             for (let i = 0; i < this._romanNumeral.length; i++) {
-                this.updateCurrentValue(i);
-                this.updateNextValue(i);
-                this.updateResult();
+                this._updateCurrentValue(i);
+                this._updateNextValue(i);
+                this._updateResult();
             }
             return this._result;
         };
         this._romanNumeral = _romanNumeral;
     }
-    updateCurrentValue(i) {
+    _updateCurrentValue(i) {
         const currentSymbol = this._romanNumeral[i];
         this._currentValue = romanValues[currentSymbol];
     }
-    updateNextValue(i) {
+    _updateNextValue(i) {
         const nextSymbol = this._romanNumeral[i + 1];
         this._nextValue = romanValues[nextSymbol];
     }
-    updateResult() {
+    _updateResult() {
         if (this._nextValue && this._currentValue < this._nextValue) {
             this._result -= this._currentValue;
         }
