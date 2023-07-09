@@ -13,8 +13,8 @@ class RomanConversion {
         M: 1000,
     };
 
-    constructor(_romanNumeral: string) {
-        this._romanNumeral = _romanNumeral;
+    constructor(romanNumeral: string) {
+        this._romanNumeral = romanNumeral;
     }
 
     romanToDecimal = (): number => {
