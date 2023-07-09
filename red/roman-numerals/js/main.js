@@ -8,27 +8,35 @@ const romanValues = {
     M: 1000,
 };
 class romanConversion {
-    constructor(romanNumeral) {
+    constructor(_romanNumeral) {
         this.romanToDecimal = () => {
-            let result = 0;
-            for (let i = 0; i < this.romanNumeral.length; i++) {
-                const currentSymbol = this.romanNumeral[i];
-                const currentValue = romanValues[currentSymbol];
-                const nextSymbol = this.romanNumeral[i + 1];
-                const nextValue = romanValues[nextSymbol];
-                if (nextValue && currentValue < nextValue) {
-                    result -= currentValue;
-                }
-                else {
-                    result += currentValue;
-                }
+            this._result = 0;
+            for (let i = 0; i < this._romanNumeral.length; i++) {
+                this.updateCurrentValue(i);
+                this.updateNextValue(i);
+                this.updateResult();
             }
-            return result;
+            return this._result;
         };
-        this.romanNumeral = romanNumeral;
+        this._romanNumeral = _romanNumeral;
+    }
+    updateCurrentValue(i) {
+        const currentSymbol = this._romanNumeral[i];
+        this._currentValue = romanValues[currentSymbol];
+    }
+    updateNextValue(i) {
+        const nextSymbol = this._romanNumeral[i + 1];
+        this._nextValue = romanValues[nextSymbol];
+    }
+    updateResult() {
+        if (this._nextValue && this._currentValue < this._nextValue) {
+            this._result -= this._currentValue;
+        }
+        else {
+            this._result += this._currentValue;
+        }
     }
 }
-const romanNumeral = "MMXXI";
-const conversion = new romanConversion(romanNumeral);
+const conversion = new romanConversion("MMXXI");
 const decimalValue = conversion.romanToDecimal();
 console.log(decimalValue);

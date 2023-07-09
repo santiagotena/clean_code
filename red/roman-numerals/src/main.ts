@@ -9,32 +9,44 @@ const romanValues: { [key: string]: number } = {
 };
 
 class romanConversion {
-    romanNumeral: string;
+    private _romanNumeral: string;
+    private _currentValue: number;
+    private _nextValue: number;
+    private _result: number;
 
-    constructor(romanNumeral: string) {
-        this.romanNumeral = romanNumeral;
+    constructor(_romanNumeral: string) {
+        this._romanNumeral = _romanNumeral;
+    }
+
+    updateCurrentValue(i): void {
+        const currentSymbol: string = this._romanNumeral[i];
+        this._currentValue = romanValues[currentSymbol];
+    }
+
+    updateNextValue(i): void {
+        const nextSymbol: string = this._romanNumeral[i + 1];
+        this._nextValue = romanValues[nextSymbol];
+    }
+
+    updateResult(): void {
+        if (this._nextValue && this._currentValue < this._nextValue) {
+            this._result -= this._currentValue;
+        } else {
+            this._result += this._currentValue;
+        }
     }
 
     romanToDecimal = (): number => {
-        let result: number = 0;
-
-        for (let i = 0; i < this.romanNumeral.length; i++) {
-            const currentSymbol = this.romanNumeral[i];
-            const currentValue = romanValues[currentSymbol];
-            const nextSymbol = this.romanNumeral[i + 1];
-            const nextValue = romanValues[nextSymbol];
-
-            if (nextValue && currentValue < nextValue) {
-                result -= currentValue;
-            } else {
-                result += currentValue;
-            }
+        this._result = 0;
+        for (let i = 0; i < this._romanNumeral.length; i++) {
+            this.updateCurrentValue(i);
+            this.updateNextValue(i);
+            this.updateResult();
         }
-        return result;
+        return this._result;
     }
 }
 
-const romanNumeral = "MMXXI";
-const conversion = new romanConversion(romanNumeral);
-const decimalValue = conversion.romanToDecimal();
+const conversion = new romanConversion("MMXXI");
+const decimalValue : number = conversion.romanToDecimal();
 console.log(decimalValue);
