@@ -1,4 +1,4 @@
-class RomanConversion {
+class RomanNumeral {
     constructor(romanNumeral) {
         this._romanValues = {
             I: 1,
@@ -12,6 +12,7 @@ class RomanConversion {
         this.romanToDecimal = () => {
             this._decimal = 0;
             for (let i = 0; i < this._romanNumeral.length; i++) {
+                this._validateCurrentValue(i);
                 this._updateCurrentValue(i);
                 this._updateNextValue(i);
                 this._updateDecimal();
@@ -19,6 +20,12 @@ class RomanConversion {
             return this._decimal;
         };
         this._romanNumeral = romanNumeral;
+    }
+    _validateCurrentValue(i) {
+        const currentSymbol = this._romanNumeral[i];
+        const keys = Object.keys(this._romanValues);
+        if (!keys.includes(currentSymbol))
+            console.log("Wait. That is illegal.");
     }
     _updateCurrentValue(i) {
         const currentSymbol = this._romanNumeral[i];
@@ -37,6 +44,16 @@ class RomanConversion {
         }
     }
 }
-const conversion = new RomanConversion("MMXXI");
-const decimalValue = conversion.romanToDecimal();
-console.log(decimalValue);
+const inputElement = document.getElementById('input-label');
+const submitButton = document.getElementById('submit-btn');
+submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    const inputValue = inputElement.value;
+    console.log(inputValue);
+    const romanValue = new RomanNumeral(inputValue);
+    const decimalValue = romanValue.romanToDecimal();
+    // console.log(decimalValue);
+});
+// const romanValue = new RomanNumeral("MMXXI");
+// const decimalValue : number = romanValue.romanToDecimal();
+// console.log(decimalValue);
