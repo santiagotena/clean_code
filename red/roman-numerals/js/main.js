@@ -2,12 +2,15 @@ import { RomanNumeral } from "./RomanNumeral.js";
 const submitButton = document.querySelector('.submit-btn');
 submitButton.addEventListener('click', (event) => {
     event.preventDefault();
-    const decimalValue = convertRomanToDecimal();
+    const inputValue = extractInput();
+    const decimalValue = convertRomanToDecimal(inputValue);
     displayDecimalValue(decimalValue);
 });
-function convertRomanToDecimal() {
+function extractInput() {
     const inputElement = document.querySelector('.input-form');
-    const inputValue = inputElement.value;
+    return inputElement.value;
+}
+function convertRomanToDecimal(inputValue) {
     const romanValue = new RomanNumeral(inputValue);
     return romanValue.romanToDecimal();
 }
@@ -18,3 +21,8 @@ function displayDecimalValue(decimalValue) {
     else
         decimalOutput.textContent = decimalValue.toString();
 }
+// Tests //
+// 1994 == MCMXCIV
+// 2021 == MMXXI
+// 3000 == MMM
+// Error == J

@@ -41,5 +41,4 @@ class RomanNumeral {
 const romanValue = new RomanNumeral("MMXXI"); // 2021
 const decimalValue = romanValue.romanToDecimal();
 console.log(decimalValue);
-// 1994 == MCMXCIV
 export { RomanNumeral };
