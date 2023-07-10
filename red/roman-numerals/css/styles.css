@@ -5,6 +5,7 @@
     --text-secondary: white;
     --bg--header: brown;
     --bg--catalogue: rgb(250, 235, 230);
+    --header-size: 20vh;
 }
 
 body {
@@ -19,24 +20,22 @@ body {
 .header {
     background: var(--bg--header);
     color: var(--text-secondary);
-    height: 10%;
+    height: var(--header-size);
     width: 100vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     font-size: 2rem;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 /*Content styling*/
 .content {
-    display: grid;
-    grid-template-columns: repeat(4, min-content);
-    grid-template-rows: repeat(3, 1fr);
-    grid-auto-rows: 250px;
-    gap: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
     padding: 2rem;
+    font-size: 2rem;
     background: var(--bg--catalogue);
-    height: 90%;
+    height: calc(100vh - var(--header-size));
     width: 100vw;
 }
