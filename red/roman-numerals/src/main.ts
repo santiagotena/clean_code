@@ -20,19 +20,11 @@ class RomanNumeral {
     romanToDecimal = (): number => {
         this._decimal = 0;
         for (let i = 0; i < this._romanNumeral.length; i++) {
-            this._validateCurrentValue(i);
             this._updateCurrentValue(i);
             this._updateNextValue(i);
             this._updateDecimal();
         }
         return this._decimal;
-    }
-
-    private _validateCurrentValue(i: number): void {
-        const currentSymbol: string = this._romanNumeral[i];
-        const keys: string[] = Object.keys(this._romanValues);
-        if (!keys.includes(currentSymbol))
-            console.log("Wait. That is illegal.");
     }
 
     private _updateCurrentValue(i: number): void {
@@ -54,24 +46,26 @@ class RomanNumeral {
     }
 }
 
-const inputElement = document.getElementById('input-label') as HTMLInputElement;
-const submitButton = document.getElementById('submit-btn') as HTMLButtonElement;
+const inputElement = document.querySelector('.input-form') as HTMLInputElement;
+const submitButton = document.querySelector('.submit-btn') as HTMLButtonElement;
 submitButton.addEventListener('click', (event) => {
    event.preventDefault();
+
+   // convert roman to decimal
    const inputValue = inputElement.value;
-   console.log(inputValue);
+   const romanValue = new RomanNumeral(inputValue);
+   const decimalValue : number = romanValue.romanToDecimal();
 
-    const romanValue = new RomanNumeral(inputValue);
-    const decimalValue : number = romanValue.romanToDecimal();
-    // console.log(decimalValue);
-
-
-
-
-
+   //display result
+   const decimalOutput = document.querySelector('.decimal-output') as HTMLElement;
+   if (Number.isNaN(decimalValue))
+       decimalOutput.textContent = "Wait. That's illegal.";
+   else
+       decimalOutput.textContent = decimalValue.toString();
 });
 
+const romanValue = new RomanNumeral("MMXXI"); // 2021
+const decimalValue : number = romanValue.romanToDecimal();
+console.log(decimalValue);
 
-// const romanValue = new RomanNumeral("MMXXI");
-// const decimalValue : number = romanValue.romanToDecimal();
-// console.log(decimalValue);
+// 1994 == MCMXCIV
