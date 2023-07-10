@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "target": "es2016",
     "watch": true,
     "rootDir": "./src",
     "outDir": "./js"
