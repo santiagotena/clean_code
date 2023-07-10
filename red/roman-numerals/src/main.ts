@@ -1,4 +1,4 @@
-class RomanConversion {
+class RomanNumeral {
     private _romanNumeral: string;
     private _currentValue: number;
     private _nextValue: number;
@@ -46,6 +46,6 @@ class RomanConversion {
     }
 }
 
-const conversion = new RomanConversion("MMXXI");
-const decimalValue : number = conversion.romanToDecimal();
+const romanValue = new RomanNumeral("MMXXI");
+const decimalValue : number = romanValue.romanToDecimal();
 console.log(decimalValue);

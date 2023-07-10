@@ -1,5 +1,5 @@
 class RomanConversion {
-    constructor(_romanNumeral) {
+    constructor(romanNumeral) {
         this._romanValues = {
             I: 1,
             V: 5,
@@ -18,7 +18,7 @@ class RomanConversion {
             }
             return this._decimal;
         };
-        this._romanNumeral = _romanNumeral;
+        this._romanNumeral = romanNumeral;
     }
     _updateCurrentValue(i) {
         const currentSymbol = this._romanNumeral[i];
