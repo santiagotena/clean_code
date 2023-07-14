@@ -15,7 +15,7 @@ function extractInput(): string {
 
 function convertRomanToDecimal(inputValue: string) : number {
     const romanValue : RomanNumeral = new RomanNumeral(inputValue);
-    return romanValue.romanToDecimal();
+    return romanValue.toDecimal();
 }
 
 function displayDecimalValue(decimalValue: number) : void {
