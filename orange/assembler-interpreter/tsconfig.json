@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "watch": false, // Autosave
+    "target": "es2016", // Output version
+    "rootDir": "./ts", // Source folder
+    "outDir": "./js", // Output folder
+    "moduleResolution": "Node",
+  }
+}  
