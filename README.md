@@ -1,3 +1,3 @@
 # clean_code
 
-A repository to implement clean code practices.
+A repository meant to implement clean code practices in alignment with [Clean Code Developer](https://clean-code-developer.com/).

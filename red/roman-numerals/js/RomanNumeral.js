@@ -9,7 +9,7 @@ class RomanNumeral {
             D: 500,
             M: 1000,
         };
-        this.romanToDecimal = () => {
+        this.toDecimal = () => {
             this._decimal = 0;
             for (let i = 0; i < this._romanNumeral.length; i++) {
                 this._updateCurrentValue(i);
@@ -39,6 +39,6 @@ class RomanNumeral {
 }
 // Console Test //
 const romanValue = new RomanNumeral("MMXXI"); // 2021
-const decimalValue = romanValue.romanToDecimal();
+const decimalValue = romanValue.toDecimal();
 console.log(decimalValue);
 export { RomanNumeral };

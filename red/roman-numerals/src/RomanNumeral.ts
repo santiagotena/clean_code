@@ -17,7 +17,7 @@ class RomanNumeral {
         this._romanNumeral = romanNumeral;
     }
 
-    romanToDecimal = (): number => {
+    toDecimal = (): number => {
         this._decimal = 0;
         for (let i = 0; i < this._romanNumeral.length; i++) {
             this._updateCurrentValue(i);
@@ -48,7 +48,7 @@ class RomanNumeral {
 
 // Console Test //
 const romanValue : RomanNumeral = new RomanNumeral("MMXXI"); // 2021
-const decimalValue : number = romanValue.romanToDecimal();
+const decimalValue : number = romanValue.toDecimal();
 console.log(decimalValue);
 
 export {RomanNumeral};

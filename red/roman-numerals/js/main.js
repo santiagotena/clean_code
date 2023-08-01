@@ -12,7 +12,7 @@ function extractInput() {
 }
 function convertRomanToDecimal(inputValue) {
     const romanValue = new RomanNumeral(inputValue);
-    return romanValue.romanToDecimal();
+    return romanValue.toDecimal();
 }
 function displayDecimalValue(decimalValue) {
     const decimalOutput = document.querySelector('.decimal-output');
