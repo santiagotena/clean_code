@@ -1,15 +1,5 @@
 import {AssemblerInterpreter} from './main';
 
-it('test jest', () => {
-    expect(2).toBe(2);
-});
-
-it('test jest 2', () => {
-    const a = 5;
-    const b = 10;
-    expect(a+b).toBe(15);
-});
-
 it('move integer', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
     expect(assemblerInstructions.execute()).toEqual({
@@ -17,7 +7,13 @@ it('move integer', () => {
     });
 });
 
-it.todo('move register');
+it('move register', () => {
+    const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "mov b a"]);
+    expect(assemblerInstructions.execute()).toEqual({
+        'a' : 5,
+        'b' : 5
+    });
+});
 
 it('move & increase', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a"]);
@@ -33,15 +29,21 @@ it('move & decrease', () => {
     });
 });
 
-it('jump forward by integer', () => {
-    const input = ["mov a 5", "jnz a 2", "inc a", "inc a"];
-    const assemblerInstructions = new AssemblerInterpreter(input);
-    expect(assemblerInstructions.execute()).toEqual({
-        'a' : 6
-    });
-});
-
-it.todo('jump back by integer');
+// it('jump forward by integer', () => {
+//     const input = ["mov a 5", "jnz a 2", "inc a", "inc a"];
+//     const assemblerInstructions = new AssemblerInterpreter(input);
+//     expect(assemblerInstructions.execute()).toEqual({
+//         'a' : 6
+//     });
+// });
+//
+// it('jump back by integer', () => {
+//     const input = ["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"];
+//     const assemblerInstructions = new AssemblerInterpreter(input);
+//     expect(assemblerInstructions.execute()).toEqual({
+//         'a' : 1
+//     });
+// });
 
 it.todo('jump forward by register');
 

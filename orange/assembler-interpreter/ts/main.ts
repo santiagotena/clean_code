@@ -33,8 +33,11 @@ export class AssemblerInterpreter {
             this._jumpToInstruction(this._currentInstruction[1], this._currentInstruction[2]);
     }
 
-    private _copyToRegister = (register : string, value : number | string) : void => {
-        this._result[register] = value;
+    private _copyToRegister = (register : string, value) : void => {
+        if (isNaN(value))
+            this._result[register] = this._result[value];
+        else
+           this._result[register] = Number(value);
     }
 
     private _increaseRegister = (register : string) : void => {
@@ -45,14 +48,14 @@ export class AssemblerInterpreter {
         this._result[register]--;
     }
 
-    private _jumpToInstruction = (register : string, steps : number | string) : void => {
+    private _jumpToInstruction = (register : string, steps) : void => {
         if (this._result[register] == 0 || this._result[register] == this._integerLimit || this._result[register] == -this._integerLimit)
             return;
 
-        if (typeof steps === "string")
+        if (isNaN(steps))
             steps = Number(this._result[steps]);
 
-        this._instructionsIndex += steps;
+        this._instructionsIndex += steps - 1;
 
         //
 
