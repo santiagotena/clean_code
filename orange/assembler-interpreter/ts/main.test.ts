@@ -12,21 +12,21 @@ it('test jest 2', () => {
 
 it('move', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
-    expect(assemblerInstructions.executeInstructions()).toEqual({
+    expect(assemblerInstructions.execute()).toEqual({
         'a' : 5
     });
 });
 
 it('move & increase', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a"]);
-    expect(assemblerInstructions.executeInstructions()).toEqual({
+    expect(assemblerInstructions.execute()).toEqual({
         'a' : 6
     });
 });
 
 it('move & decrease', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "dec a"]);
-    expect(assemblerInstructions.executeInstructions()).toEqual({
+    expect(assemblerInstructions.execute()).toEqual({
         'a' : 4
     });
 });
@@ -42,3 +42,5 @@ it.todo('jump back by register');
 it.todo('jump forward - out of bounds');
 
 it.todo('jump back - out of bounds');
+
+it.todo('multiple registers');
