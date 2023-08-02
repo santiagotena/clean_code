@@ -25,7 +25,10 @@ export class AssemblerInterpreter {
         return this._result;
     }
 
-    
+    decreaseRegister = (register: string) : Object => {
+        this._result[register]--;
+        return this._result;
+    }
 
 }
 
