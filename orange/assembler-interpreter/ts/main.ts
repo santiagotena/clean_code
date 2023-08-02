@@ -20,6 +20,13 @@ export class AssemblerInterpreter {
         return this._result;
     }
 
+    increaseRegister = (register: string) : Object => {
+        this._result[register]++;
+        return this._result;
+    }
+
+    
+
 }
 
 // Main function
