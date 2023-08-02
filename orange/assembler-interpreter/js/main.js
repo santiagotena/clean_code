@@ -1,9 +1,10 @@
 export class AssemblerInterpreter {
     constructor(instructions) {
         this._result = {};
-        this.executeInstructions = () => {
-            for (let i = 0; i < this._instructions.length; i++) {
-                this.splitInstruction(this._instructions[i]);
+        this.execute = () => {
+            this._instructionsIndex = 0;
+            for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
+                this.splitInstruction(this._instructions[this._instructionsIndex]);
                 this.assignInstruction();
             }
             return this._result;
@@ -33,7 +34,6 @@ export class AssemblerInterpreter {
 }
 // Main function
 // const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
-const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a"]);
-const interpreterOutput = assemblerInstructions.executeInstructions();
-console.log(interpreterOutput);
+const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a"]);
+console.log(assemblerInstructions.execute());
 module.exports = { AssemblerInterpreter };
