@@ -1,7 +1,7 @@
 export class AssemblerInterpreter {
     private _instructions : Array<string>;
     private _currentInstructionIndex : number;
-    private _result : Object;
+    private _result : Object = {};
 
     constructor(instructions : Array<string>) {
         this._instructions = instructions;
@@ -15,8 +15,8 @@ export class AssemblerInterpreter {
         return this._result;
     }
 
-    copyToRegister = () : Object => {
-
+    copyToRegister = (register : string, value : number) : Object => {
+        this._result[register] = value;
         return this._result;
     }
 

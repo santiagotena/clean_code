@@ -1,5 +1,6 @@
 export class AssemblerInterpreter {
     constructor(instructions) {
+        this._result = {};
         this.executeInstructions = () => {
             this._currentInstructionIndex = 0;
             // for
@@ -7,7 +8,8 @@ export class AssemblerInterpreter {
             //     direct action
             return this._result;
         };
-        this.copyToRegister = () => {
+        this.copyToRegister = (register, value) => {
+            this._result[register] = value;
             return this._result;
         };
         this._instructions = instructions;

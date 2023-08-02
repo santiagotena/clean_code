@@ -9,12 +9,24 @@ it('test jest 2', () => {
 });
 it('move', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
-    const interpreterOutput = assemblerInstructions.executeInstructions();
+    expect(assemblerInstructions.copyToRegister("a", 5)).toEqual({
+        'a': 5
+    });
 });
-it.todo('increase');
-it.todo('decrease');
-it.todo('move & increase');
-it.todo('move & decrease');
+it('increase', () => {
+    const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
+    assemblerInstructions.copyToRegister("a", 5);
+    expect(assemblerInstructions.increaseRegister("a")).toEqual({
+        'a': 6
+    });
+});
+it('decrease', () => {
+    const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
+    assemblerInstructions.copyToRegister("a", 5);
+    expect(assemblerInstructions.decreaseRegister("a")).toEqual({
+        'a': 4
+    });
+});
 it.todo('jump back by integer');
 it.todo('jump back by register');
 it.todo('jump back - out of bounds');
