@@ -1,3 +1,4 @@
+import { AssemblerInterpreter } from './main';
 it('test jest', () => {
     expect(2).toBe(2);
 });
@@ -7,6 +8,8 @@ it('test jest 2', () => {
     expect(a + b).toBe(15);
 });
 it('move', () => {
+    const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
+    const interpreterOutput = assemblerInstructions.executeInstructions();
 });
 it.todo('increase');
 it.todo('decrease');
