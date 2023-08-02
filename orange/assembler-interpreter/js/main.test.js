@@ -86,6 +86,22 @@ describe('escape infinite loops', () => {
         });
     });
 });
-// it.todo('multiple active registers 1');
-//
-// it.todo('multiple active registers 2');
+describe('multiple active registers', () => {
+    test('test 2', () => {
+        const input = ["mov a 5", "mov b 9", "dec a", "dec a", "jnz a -1", "inc a", "inc b"];
+        const assemblerInstructions = new AssemblerInterpreter(input);
+        expect(assemblerInstructions.execute()).toEqual({
+            'a': 1,
+            'b': 10
+        });
+    });
+    test('test 1', () => {
+        const input = ["mov a 5", "dec a", "mov c 41", "dec a", "inc c", "mov b 25"];
+        const assemblerInstructions = new AssemblerInterpreter(input);
+        expect(assemblerInstructions.execute()).toEqual({
+            'a': 3,
+            'b': 25,
+            'c': 42
+        });
+    });
+});
