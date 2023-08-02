@@ -1,24 +1,23 @@
 export class AssemblerInterpreter {
     private _instructions : Array<string>;
-    private _instructionsIndex : number;
+    private _instructionsIndex : number = 0;
     private _currentInstruction : Array<string>;
     private _integerLimit : number = 99;
-    private _result : Object = {};
+    private _registers : Object = {};
 
     constructor(instructions : Array<string>) {
         this._instructions = instructions;
     }
 
     execute = () : Object => {
-        this._instructionsIndex = 0;
         for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
-            this._splitInstruction(this._instructions[this._instructionsIndex]);
+            this._prepareInstruction(this._instructions[this._instructionsIndex]);
             this._assignInstruction();
         }
-        return this._result;
+        return this._registers;
     }
 
-    private _splitInstruction = (instruction : string) => {
+    private _prepareInstruction = (instruction : string) => {
         this._currentInstruction = instruction.split(' ');
     }
 
@@ -35,38 +34,52 @@ export class AssemblerInterpreter {
 
     private _copyToRegister = (register : string, value) : void => {
         if (isNaN(value))
-            this._result[register] = this._result[value];
+            this._registers[register] = this._registers[value];
         else
-           this._result[register] = Number(value);
+           this._registers[register] = Number(value);
     }
 
     private _increaseRegister = (register : string) : void => {
-        this._result[register]++;
+        this._registers[register]++;
     }
 
     private _decreaseRegister = (register : string) : void => {
-        this._result[register]--;
+        this._registers[register]--;
     }
 
     private _jumpToInstruction = (register : string, steps) : void => {
-        if (this._result[register] == 0 || this._result[register] == this._integerLimit || this._result[register] == -this._integerLimit)
+        if (this._isRegisterValueInvalid(register))
             return;
-
-        if (isNaN(steps))
-            steps = Number(this._result[steps]);
-
-        this._instructionsIndex += steps - 1;
-
-        if (this._instructionsIndex >= this._instructions.length - 1 || this._instructionsIndex <= -2)
-            throw new Error("Jump out of bounds");
-
+        this._shiftIndex(steps);
+        this._assertNewIndexIsValid();
     }
 
+    private _isRegisterValueInvalid = (register : string) : boolean => {
+        return (this._registerEqualsZero(register) || this._registerPassesLimit(register));
+    }
+
+    private _registerEqualsZero = (register : string) : boolean => {
+        return this._registers[register] == 0
+    }
+
+    private _registerPassesLimit = (register : string) : boolean => {
+        return (this._registers[register] == this._integerLimit || this._registers[register] == -this._integerLimit)
+    }
+
+    private _shiftIndex = (steps) : void => {
+        if (isNaN(steps))
+            steps = this._registers[steps];
+        this._instructionsIndex += steps - 1;
+    }
+
+    private _assertNewIndexIsValid = () : void => {
+        if (this._instructionsIndex >= this._instructions.length - 1 || this._instructionsIndex <= -2)
+            throw new Error("Jump out of bounds");
+    }
 }
 
 // Main function
 const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
-// const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a"]);
 console.log(assemblerInstructions.execute());
 
 module.exports = {AssemblerInterpreter};
