@@ -4,29 +4,29 @@ export class AssemblerInterpreter {
         this.execute = () => {
             this._instructionsIndex = 0;
             for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
-                this.splitInstruction(this._instructions[this._instructionsIndex]);
-                this.assignInstruction();
+                this._splitInstruction(this._instructions[this._instructionsIndex]);
+                this._assignInstruction();
             }
             return this._result;
         };
-        this.splitInstruction = (instruction) => {
+        this._splitInstruction = (instruction) => {
             this._currentInstruction = instruction.split(' ');
         };
-        this.assignInstruction = () => {
+        this._assignInstruction = () => {
             if (this._currentInstruction[0] === "mov")
-                this.copyToRegister(this._currentInstruction[1], +this._currentInstruction[2]);
+                this._copyToRegister(this._currentInstruction[1], +this._currentInstruction[2]);
             else if (this._currentInstruction[0] === "inc")
-                this.increaseRegister(this._currentInstruction[1]);
+                this._increaseRegister(this._currentInstruction[1]);
             else if (this._currentInstruction[0] == "dec")
-                this.decreaseRegister(this._currentInstruction[1]);
+                this._decreaseRegister(this._currentInstruction[1]);
         };
-        this.copyToRegister = (register, value) => {
+        this._copyToRegister = (register, value) => {
             this._result[register] = value;
         };
-        this.increaseRegister = (register) => {
+        this._increaseRegister = (register) => {
             this._result[register]++;
         };
-        this.decreaseRegister = (register) => {
+        this._decreaseRegister = (register) => {
             this._result[register]--;
         };
         this._instructions = instructions;

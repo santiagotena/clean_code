@@ -11,34 +11,34 @@ export class AssemblerInterpreter {
     execute = () : Object => {
         this._instructionsIndex = 0;
         for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
-            this.splitInstruction(this._instructions[this._instructionsIndex]);
-            this.assignInstruction();
+            this._splitInstruction(this._instructions[this._instructionsIndex]);
+            this._assignInstruction();
         }
         return this._result;
     }
 
-    splitInstruction = (instruction : string) => {
+    private _splitInstruction = (instruction : string) => {
         this._currentInstruction = instruction.split(' ');
     }
 
-    assignInstruction = () => {
+    private _assignInstruction = () => {
         if (this._currentInstruction[0] === "mov")
-            this.copyToRegister(this._currentInstruction[1], +this._currentInstruction[2]);
+            this._copyToRegister(this._currentInstruction[1], +this._currentInstruction[2]);
         else if (this._currentInstruction[0] === "inc")
-            this.increaseRegister(this._currentInstruction[1]);
+            this._increaseRegister(this._currentInstruction[1]);
         else if (this._currentInstruction[0] == "dec")
-            this.decreaseRegister(this._currentInstruction[1]);
+            this._decreaseRegister(this._currentInstruction[1]);
     }
 
-    copyToRegister = (register : string, value : number) : void => {
+    private _copyToRegister = (register : string, value : number) : void => {
         this._result[register] = value;
     }
 
-    increaseRegister = (register: string) : void => {
+    private _increaseRegister = (register: string) : void => {
         this._result[register]++;
     }
 
-    decreaseRegister = (register: string) : void => {
+    private _decreaseRegister = (register: string) : void => {
         this._result[register]--;
     }
 
