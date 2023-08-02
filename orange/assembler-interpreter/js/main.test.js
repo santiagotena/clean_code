@@ -7,12 +7,13 @@ it('test jest 2', () => {
     const b = 10;
     expect(a + b).toBe(15);
 });
-it('move', () => {
+it('move integer', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
     expect(assemblerInstructions.execute()).toEqual({
         'a': 5
     });
 });
+it.todo('move register');
 it('move & increase', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a"]);
     expect(assemblerInstructions.execute()).toEqual({
@@ -25,10 +26,18 @@ it('move & decrease', () => {
         'a': 4
     });
 });
-it.todo('jump forward by integer');
+it('jump forward by integer', () => {
+    const input = ["mov a 5", "jnz a 2", "inc a", "inc a"];
+    const assemblerInstructions = new AssemblerInterpreter(input);
+    expect(assemblerInstructions.execute()).toEqual({
+        'a': 6
+    });
+});
 it.todo('jump back by integer');
 it.todo('jump forward by register');
 it.todo('jump back by register');
 it.todo('jump forward - out of bounds');
 it.todo('jump back - out of bounds');
+it.todo('escape infinite positive loops');
+it.todo('escape infinite negative loops');
 it.todo('multiple registers');

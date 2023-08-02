@@ -1,7 +1,8 @@
 export class AssemblerInterpreter {
     private _instructions : Array<string>;
     private _instructionsIndex : number;
-    private _currentInstruction: Array<string>;
+    private _currentInstruction : Array<string>;
+    private _integerLimit : number = 99;
     private _result : Object = {};
 
     constructor(instructions : Array<string>) {
@@ -23,23 +24,38 @@ export class AssemblerInterpreter {
 
     private _assignInstruction = () => {
         if (this._currentInstruction[0] === "mov")
-            this._copyToRegister(this._currentInstruction[1], +this._currentInstruction[2]);
+            this._copyToRegister(this._currentInstruction[1], this._currentInstruction[2]);
         else if (this._currentInstruction[0] === "inc")
             this._increaseRegister(this._currentInstruction[1]);
         else if (this._currentInstruction[0] == "dec")
             this._decreaseRegister(this._currentInstruction[1]);
+        else if (this._currentInstruction[0] == "jnz")
+            this._jumpToInstruction(this._currentInstruction[1], this._currentInstruction[2]);
     }
 
-    private _copyToRegister = (register : string, value : number) : void => {
+    private _copyToRegister = (register : string, value : number | string) : void => {
         this._result[register] = value;
     }
 
-    private _increaseRegister = (register: string) : void => {
+    private _increaseRegister = (register : string) : void => {
         this._result[register]++;
     }
 
-    private _decreaseRegister = (register: string) : void => {
+    private _decreaseRegister = (register : string) : void => {
         this._result[register]--;
+    }
+
+    private _jumpToInstruction = (register : string, steps : number | string) : void => {
+        if (this._result[register] == 0 || this._result[register] == this._integerLimit || this._result[register] == -this._integerLimit)
+            return;
+
+        if (typeof steps === "string")
+            steps = Number(this._result[steps]);
+
+        this._instructionsIndex += steps;
+
+        //
+
     }
 
 }

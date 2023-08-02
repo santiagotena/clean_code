@@ -1,5 +1,6 @@
 export class AssemblerInterpreter {
     constructor(instructions) {
+        this._integerLimit = 99;
         this._result = {};
         this.execute = () => {
             this._instructionsIndex = 0;
@@ -14,11 +15,13 @@ export class AssemblerInterpreter {
         };
         this._assignInstruction = () => {
             if (this._currentInstruction[0] === "mov")
-                this._copyToRegister(this._currentInstruction[1], +this._currentInstruction[2]);
+                this._copyToRegister(this._currentInstruction[1], this._currentInstruction[2]);
             else if (this._currentInstruction[0] === "inc")
                 this._increaseRegister(this._currentInstruction[1]);
             else if (this._currentInstruction[0] == "dec")
                 this._decreaseRegister(this._currentInstruction[1]);
+            else if (this._currentInstruction[0] == "jnz")
+                this._jumpToInstruction(this._currentInstruction[1], this._currentInstruction[2]);
         };
         this._copyToRegister = (register, value) => {
             this._result[register] = value;
@@ -28,6 +31,14 @@ export class AssemblerInterpreter {
         };
         this._decreaseRegister = (register) => {
             this._result[register]--;
+        };
+        this._jumpToInstruction = (register, steps) => {
+            if (this._result[register] == 0 || this._result[register] == this._integerLimit || this._result[register] == -this._integerLimit)
+                return;
+            if (typeof steps === "string")
+                steps = Number(this._result[steps]);
+            this._instructionsIndex += steps;
+            //
         };
         this._instructions = instructions;
     }
