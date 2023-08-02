@@ -1,11 +1,11 @@
 import { AssemblerInterpreter } from './main';
-it('move integer', () => {
+it('move with integer', () => {
     const assemblerInterpreter = new AssemblerInterpreter(["mov a 5"]);
     expect(assemblerInterpreter.execute()).toEqual({
         'a': 5
     });
 });
-it('move register', () => {
+it('move with register', () => {
     const assemblerInterpreter = new AssemblerInterpreter(["mov a 5", "mov b a"]);
     expect(assemblerInterpreter.execute()).toEqual({
         'a': 5,
@@ -99,9 +99,9 @@ describe('multiple active registers', () => {
         const input = ["mov a 5", "dec a", "mov c 41", "dec a", "inc c", "mov b 25"];
         const assemblerInterpreter = new AssemblerInterpreter(input);
         expect(assemblerInterpreter.execute()).toEqual({
+            'c': 42,
             'a': 3,
             'b': 25,
-            'c': 42
         });
     });
 });
