@@ -12,23 +12,21 @@ it('test jest 2', () => {
 
 it('move', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
-    expect(assemblerInstructions.copyToRegister("a", 5)).toEqual({
+    expect(assemblerInstructions.executeInstructions()).toEqual({
         'a' : 5
     });
 });
 
 it('move & increase', () => {
-    const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
-    assemblerInstructions.copyToRegister("a", 5);
-    expect(assemblerInstructions.increaseRegister("a")).toEqual({
+    const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a"]);
+    expect(assemblerInstructions.executeInstructions()).toEqual({
         'a' : 6
     });
 });
 
 it('move & decrease', () => {
-    const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
-    assemblerInstructions.copyToRegister("a", 5);
-    expect(assemblerInstructions.decreaseRegister("a")).toEqual({
+    const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "dec a"]);
+    expect(assemblerInstructions.executeInstructions()).toEqual({
         'a' : 4
     });
 });

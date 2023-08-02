@@ -1,6 +1,5 @@
 export class AssemblerInterpreter {
     private _instructions : Array<string>;
-    private _currentInstructionIndex : number;
     private _currentInstruction: Array<string>;
     private _result : Object = {};
 
@@ -9,9 +8,8 @@ export class AssemblerInterpreter {
     }
 
     executeInstructions = () : Object => {
-        this._currentInstructionIndex = 0;
         for (let i = 0; i < this._instructions.length; i++) {
-            this.splitInstruction(this._instructions[this._currentInstructionIndex]);
+            this.splitInstruction(this._instructions[i]);
             this.assignInstruction();
         }
         return this._result;
@@ -30,25 +28,23 @@ export class AssemblerInterpreter {
             this.decreaseRegister(this._currentInstruction[1]);
     }
 
-    copyToRegister = (register : string, value : number) : Object => {
+    copyToRegister = (register : string, value : number) : void => {
         this._result[register] = value;
-        return this._result;
     }
 
-    increaseRegister = (register: string) : Object => {
+    increaseRegister = (register: string) : void => {
         this._result[register]++;
-        return this._result;
     }
 
-    decreaseRegister = (register: string) : Object => {
+    decreaseRegister = (register: string) : void => {
         this._result[register]--;
-        return this._result;
     }
 
 }
 
 // Main function
-const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
+// const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
+const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a"]);
 const interpreterOutput : Object = assemblerInstructions.executeInstructions();
 console.log(interpreterOutput);
 
