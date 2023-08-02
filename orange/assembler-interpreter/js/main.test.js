@@ -59,19 +59,22 @@ it('jump back by register', () => {
 //     const assemblerInstructions = new AssemblerInterpreter(input);
 //     expect(assemblerInstructions.execute()).toThrow("Jump out of bounds");
 // });
-// describe('out of bounds', () => {
-//     test('jump forward', () => {
-//         expect(() => {
-//             const input = ["mov a 5", "jnz a 3", "inc a", "inc a"];
-//             const assemblerInstructions = new AssemblerInterpreter(input);
-//         }).toThrow("Jump out of bounds");
-//     });
-// });
-// test('jump back - out of bounds', () => {
-//     const input = ["mov a 5", "inc a", "dec a", "dec a", "jnz a -5", "inc a"];
-//     const assemblerInstructions = new AssemblerInterpreter(input);
-//     expect(assemblerInstructions.execute()).toThrow("Jump out of bounds");
-// });
+describe('out of bounds', () => {
+    test('jump forward', () => {
+        expect(() => {
+            const input = ["mov a 5", "jnz a 3", "inc a", "inc a"];
+            const assemblerInstructions = new AssemblerInterpreter(input);
+            assemblerInstructions.execute();
+        }).toThrow("Jump out of bounds");
+    });
+    test('jump backward', () => {
+        expect(() => {
+            const input = ["mov a 5", "inc a", "dec a", "dec a", "jnz a -5", "inc a"];
+            const assemblerInstructions = new AssemblerInterpreter(input);
+            assemblerInstructions.execute();
+        }).toThrow("Jump out of bounds");
+    });
+});
 // it.todo('escape infinite positive loops');
 //
 // it.todo('escape infinite negative loops')
