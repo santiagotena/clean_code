@@ -1,7 +1,13 @@
-it('test', () => {
+it('test jest', () => {
     expect(2).toBe(2);
 });
-it.todo('move');
+it('test jest 2', () => {
+    const a = 5;
+    const b = 10;
+    expect(a + b).toBe(15);
+});
+it('move', () => {
+});
 it.todo('increase');
 it.todo('decrease');
 it.todo('move & increase');
