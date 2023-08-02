@@ -10,11 +10,15 @@ export class AssemblerInterpreter {
     }
 
     execute = () : Object => {
+        this._processInstructions();
+        return this._registers;
+    }
+
+    private _processInstructions = () => {
         for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
             this._prepareInstruction(this._instructions[this._instructionsIndex]);
             this._assignInstruction();
         }
-        return this._registers;
     }
 
     private _prepareInstruction = (instruction : string) => {
@@ -50,7 +54,7 @@ export class AssemblerInterpreter {
     private _jumpToInstruction = (register : string, steps) : void => {
         if (this._isRegisterValueInvalid(register))
             return;
-        this._shiftIndex(steps);
+        this._shiftInstructionsIndex(steps);
         this._assertNewIndexIsValid();
     }
 
@@ -66,7 +70,7 @@ export class AssemblerInterpreter {
         return (this._registers[register] == this._integerLimit || this._registers[register] == -this._integerLimit)
     }
 
-    private _shiftIndex = (steps) : void => {
+    private _shiftInstructionsIndex = (steps) : void => {
         if (isNaN(steps))
             steps = this._registers[steps];
         this._instructionsIndex += steps - 1;
@@ -79,7 +83,7 @@ export class AssemblerInterpreter {
 }
 
 // Main function
-const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
-console.log(assemblerInstructions.execute());
+const assemblerInterpreter : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
+console.log(assemblerInterpreter.execute());
 
 module.exports = {AssemblerInterpreter};

@@ -4,11 +4,14 @@ export class AssemblerInterpreter {
         this._integerLimit = 99;
         this._registers = {};
         this.execute = () => {
+            this._processInstructions();
+            return this._registers;
+        };
+        this._processInstructions = () => {
             for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
                 this._prepareInstruction(this._instructions[this._instructionsIndex]);
                 this._assignInstruction();
             }
-            return this._registers;
         };
         this._prepareInstruction = (instruction) => {
             this._currentInstruction = instruction.split(' ');
@@ -38,7 +41,7 @@ export class AssemblerInterpreter {
         this._jumpToInstruction = (register, steps) => {
             if (this._isRegisterValueInvalid(register))
                 return;
-            this._shiftIndex(steps);
+            this._shiftInstructionsIndex(steps);
             this._assertNewIndexIsValid();
         };
         this._isRegisterValueInvalid = (register) => {
@@ -50,7 +53,7 @@ export class AssemblerInterpreter {
         this._registerPassesLimit = (register) => {
             return (this._registers[register] == this._integerLimit || this._registers[register] == -this._integerLimit);
         };
-        this._shiftIndex = (steps) => {
+        this._shiftInstructionsIndex = (steps) => {
             if (isNaN(steps))
                 steps = this._registers[steps];
             this._instructionsIndex += steps - 1;
@@ -63,6 +66,6 @@ export class AssemblerInterpreter {
     }
 }
 // Main function
-const assemblerInstructions = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
-console.log(assemblerInstructions.execute());
+const assemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
+console.log(assemblerInterpreter.execute());
 module.exports = { AssemblerInterpreter };
