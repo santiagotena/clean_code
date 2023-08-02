@@ -12,6 +12,14 @@ export class AssemblerInterpreter {
             this._result[register] = value;
             return this._result;
         };
+        this.increaseRegister = (register) => {
+            this._result[register]++;
+            return this._result;
+        };
+        this.decreaseRegister = (register) => {
+            this._result[register]--;
+            return this._result;
+        };
         this._instructions = instructions;
     }
 }
