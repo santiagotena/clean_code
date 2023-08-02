@@ -17,7 +17,7 @@ it('move', () => {
     });
 });
 
-it('increase', () => {
+it('move & increase', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
     assemblerInstructions.copyToRegister("a", 5);
     expect(assemblerInstructions.increaseRegister("a")).toEqual({
@@ -25,7 +25,7 @@ it('increase', () => {
     });
 });
 
-it('decrease', () => {
+it('move & decrease', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
     assemblerInstructions.copyToRegister("a", 5);
     expect(assemblerInstructions.decreaseRegister("a")).toEqual({

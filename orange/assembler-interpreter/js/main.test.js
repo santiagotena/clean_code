@@ -13,14 +13,14 @@ it('move', () => {
         'a': 5
     });
 });
-it('increase', () => {
+it('move & increase', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
     assemblerInstructions.copyToRegister("a", 5);
     expect(assemblerInstructions.increaseRegister("a")).toEqual({
         'a': 6
     });
 });
-it('decrease', () => {
+it('move & decrease', () => {
     const assemblerInstructions = new AssemblerInterpreter(["mov a 5"]);
     assemblerInstructions.copyToRegister("a", 5);
     expect(assemblerInstructions.decreaseRegister("a")).toEqual({
