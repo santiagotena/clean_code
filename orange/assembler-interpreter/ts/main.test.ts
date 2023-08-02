@@ -63,12 +63,6 @@ it('jump back by register', () => {
     });
 });
 
-// test('jump forward - out of bounds', () => {
-//     const input = ["mov a 5", "jnz a 3", "inc a", "inc a"];
-//     const assemblerInstructions = new AssemblerInterpreter(input);
-//     expect(assemblerInstructions.execute()).toThrow("Jump out of bounds");
-// });
-
 describe('out of bounds', () => {
     test('jump forward', () => {
         expect(() => {
@@ -87,10 +81,24 @@ describe('out of bounds', () => {
     });
 });
 
-// it.todo('escape infinite positive loops');
-//
-// it.todo('escape infinite negative loops')
-//
+describe('escape infinite loops', () => {
+    test('positive', () => {
+        const input = ["mov a -5", "dec a", "dec a", "jnz a -1", "inc a"];
+        const assemblerInstructions = new AssemblerInterpreter(input);
+        expect(assemblerInstructions.execute()).toEqual({
+            'a' : -98
+        });
+    });
+
+    test('positive', () => {
+        const input = ["mov a 5", "inc a", "inc a", "jnz a -1", "inc a"];
+        const assemblerInstructions = new AssemblerInterpreter(input);
+        expect(assemblerInstructions.execute()).toEqual({
+            'a' : 100
+        });
+    });
+});
+
 // it.todo('multiple active registers 1');
 //
 // it.todo('multiple active registers 2');
