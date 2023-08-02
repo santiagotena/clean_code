@@ -57,15 +57,16 @@ export class AssemblerInterpreter {
 
         this._instructionsIndex += steps - 1;
 
-        //
+        if (this._instructionsIndex >= this._instructions.length - 1 || this._instructionsIndex <= -2)
+            throw new Error("Jump out of bounds");
 
     }
 
 }
 
 // Main function
-// const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
-const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a"]);
+const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a", "jnz a -1", "inc a"]);
+// const assemblerInstructions : AssemblerInterpreter = new AssemblerInterpreter(["mov a 5", "inc a", "dec a", "dec a"]);
 console.log(assemblerInstructions.execute());
 
 module.exports = {AssemblerInterpreter};

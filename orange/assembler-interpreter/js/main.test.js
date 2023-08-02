@@ -54,9 +54,3 @@ it('jump back by register', () => {
         'b': -1
     });
 });
-it.todo('jump forward - out of bounds');
-it.todo('jump back - out of bounds');
-it.todo('escape infinite positive loops');
-it.todo('escape infinite negative loops');
-it.todo('multiple active registers 1');
-it.todo('multiple active registers 2');
