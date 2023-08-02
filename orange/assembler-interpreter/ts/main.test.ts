@@ -45,9 +45,23 @@ it('jump back by integer', () => {
     });
 });
 
-it.todo('jump forward by register');
+it('jump forward by register', () => {
+    const input = ["mov a 5", "mov b 2", "jnz a b", "inc a", "inc a"];
+    const assemblerInstructions = new AssemblerInterpreter(input);
+    expect(assemblerInstructions.execute()).toEqual({
+        'a' : 6,
+        'b' : 2
+    });
+});
 
-it.todo('jump back by register');
+it('jump back by register', () => {
+    const input = ["mov a 5", "mov b -1", "inc a", "dec a", "dec a", "jnz a b", "inc a"];
+    const assemblerInstructions = new AssemblerInterpreter(input);
+    expect(assemblerInstructions.execute()).toEqual({
+        'a' : 1,
+        'b' : -1
+    });
+});
 
 it.todo('jump forward - out of bounds');
 
@@ -57,4 +71,6 @@ it.todo('escape infinite positive loops');
 
 it.todo('escape infinite negative loops')
 
-it.todo('multiple registers');
+it.todo('multiple active registers 1');
+
+it.todo('multiple active registers 2');
