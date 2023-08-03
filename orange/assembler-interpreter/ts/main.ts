@@ -1,8 +1,8 @@
 export class AssemblerInterpreter {
+    integerLimit : number = 99;
     private _instructions : Array<string>;
     private _currentInstructionIndex : number;
     private _currentInstruction : Array<string>;
-    private _integerLimit : number = 99;
     private _registers : Object = {};
 
     constructor(instructions : Array<string>) {
@@ -68,7 +68,7 @@ export class AssemblerInterpreter {
     }
 
     private _isRegisterOverLimit = (register : string) : boolean => {
-        return (this._registers[register] == this._integerLimit || this._registers[register] == -this._integerLimit)
+        return (this._registers[register] == this.integerLimit || this._registers[register] == -this.integerLimit)
     }
 
     private _shiftCurrentInstructionIndex = (steps) : void => {

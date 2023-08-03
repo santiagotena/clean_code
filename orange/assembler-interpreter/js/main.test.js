@@ -81,14 +81,14 @@ describe('escape infinite loops', () => {
         const input = ["mov a 5", "inc a", "inc a", "jnz a -1", "inc a"];
         const assemblerInterpreter = new AssemblerInterpreter(input);
         expect(assemblerInterpreter.execute()).toEqual({
-            'a': 100
+            'a': assemblerInterpreter.integerLimit + 1
         });
     });
     test('negative', () => {
         const input = ["mov a -5", "dec a", "dec a", "jnz a -1", "inc a"];
         const assemblerInterpreter = new AssemblerInterpreter(input);
         expect(assemblerInterpreter.execute()).toEqual({
-            'a': -98
+            'a': -assemblerInterpreter.integerLimit + 1
         });
     });
 });
