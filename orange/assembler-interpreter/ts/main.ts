@@ -1,6 +1,6 @@
 export class AssemblerInterpreter {
     private _instructions : Array<string>;
-    private _instructionsIndex : number = 0;
+    private _currentInstructionIndex : number;
     private _currentInstruction : Array<string>;
     private _integerLimit : number = 99;
     private _registers : Object = {};
@@ -15,17 +15,18 @@ export class AssemblerInterpreter {
     }
 
     private _processInstructions = () => {
-        for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
-            this._prepareInstruction(this._instructions[this._instructionsIndex]);
-            this._assignInstruction();
+        this._currentInstructionIndex = 0;
+        for (; this._currentInstructionIndex < this._instructions.length; this._currentInstructionIndex++) {
+            this._prepareCurrentInstruction(this._instructions[this._currentInstructionIndex]);
+            this._assignCurrentInstruction();
         }
     }
 
-    private _prepareInstruction = (instruction : string) => {
+    private _prepareCurrentInstruction = (instruction : string) => {
         this._currentInstruction = instruction.split(' ');
     }
 
-    private _assignInstruction = () => {
+    private _assignCurrentInstruction = () => {
         if (this._currentInstruction[0] === "mov")
             this._copyToRegister(this._currentInstruction[1], this._currentInstruction[2]);
         else if (this._currentInstruction[0] === "inc")
@@ -54,30 +55,30 @@ export class AssemblerInterpreter {
     private _jumpToInstruction = (register : string, steps) : void => {
         if (this._isRegisterValueInvalid(register))
             return;
-        this._shiftInstructionsIndex(steps);
+        this._shiftCurrentInstructionIndex(steps);
         this._assertNewIndexIsValid();
     }
 
     private _isRegisterValueInvalid = (register : string) : boolean => {
-        return (this._registerEqualsZero(register) || this._registerPassesLimit(register));
+        return (this._isRegisterEqualToZero(register) || this._isRegisterOverLimit(register));
     }
 
-    private _registerEqualsZero = (register : string) : boolean => {
+    private _isRegisterEqualToZero = (register : string) : boolean => {
         return this._registers[register] == 0
     }
 
-    private _registerPassesLimit = (register : string) : boolean => {
+    private _isRegisterOverLimit = (register : string) : boolean => {
         return (this._registers[register] == this._integerLimit || this._registers[register] == -this._integerLimit)
     }
 
-    private _shiftInstructionsIndex = (steps) : void => {
+    private _shiftCurrentInstructionIndex = (steps) : void => {
         if (isNaN(steps))
             steps = this._registers[steps];
-        this._instructionsIndex += steps - 1;
+        this._currentInstructionIndex += steps - 1;
     }
 
     private _assertNewIndexIsValid = () : void => {
-        if (this._instructionsIndex >= this._instructions.length - 1 || this._instructionsIndex <= -2)
+        if (this._currentInstructionIndex >= this._instructions.length - 1 || this._currentInstructionIndex <= -2)
             throw new Error("Jump out of bounds");
     }
 }

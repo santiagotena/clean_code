@@ -1,6 +1,5 @@
 export class AssemblerInterpreter {
     constructor(instructions) {
-        this._instructionsIndex = 0;
         this._integerLimit = 99;
         this._registers = {};
         this.execute = () => {
@@ -8,15 +7,16 @@ export class AssemblerInterpreter {
             return this._registers;
         };
         this._processInstructions = () => {
-            for (; this._instructionsIndex < this._instructions.length; this._instructionsIndex++) {
-                this._prepareInstruction(this._instructions[this._instructionsIndex]);
-                this._assignInstruction();
+            this._currentInstructionIndex = 0;
+            for (; this._currentInstructionIndex < this._instructions.length; this._currentInstructionIndex++) {
+                this._prepareCurrentInstruction(this._instructions[this._currentInstructionIndex]);
+                this._assignCurrentInstruction();
             }
         };
-        this._prepareInstruction = (instruction) => {
+        this._prepareCurrentInstruction = (instruction) => {
             this._currentInstruction = instruction.split(' ');
         };
-        this._assignInstruction = () => {
+        this._assignCurrentInstruction = () => {
             if (this._currentInstruction[0] === "mov")
                 this._copyToRegister(this._currentInstruction[1], this._currentInstruction[2]);
             else if (this._currentInstruction[0] === "inc")
@@ -41,25 +41,25 @@ export class AssemblerInterpreter {
         this._jumpToInstruction = (register, steps) => {
             if (this._isRegisterValueInvalid(register))
                 return;
-            this._shiftInstructionsIndex(steps);
+            this._shiftCurrentInstructionIndex(steps);
             this._assertNewIndexIsValid();
         };
         this._isRegisterValueInvalid = (register) => {
-            return (this._registerEqualsZero(register) || this._registerPassesLimit(register));
+            return (this._isRegisterEqualToZero(register) || this._isRegisterOverLimit(register));
         };
-        this._registerEqualsZero = (register) => {
+        this._isRegisterEqualToZero = (register) => {
             return this._registers[register] == 0;
         };
-        this._registerPassesLimit = (register) => {
+        this._isRegisterOverLimit = (register) => {
             return (this._registers[register] == this._integerLimit || this._registers[register] == -this._integerLimit);
         };
-        this._shiftInstructionsIndex = (steps) => {
+        this._shiftCurrentInstructionIndex = (steps) => {
             if (isNaN(steps))
                 steps = this._registers[steps];
-            this._instructionsIndex += steps - 1;
+            this._currentInstructionIndex += steps - 1;
         };
         this._assertNewIndexIsValid = () => {
-            if (this._instructionsIndex >= this._instructions.length - 1 || this._instructionsIndex <= -2)
+            if (this._currentInstructionIndex >= this._instructions.length - 1 || this._currentInstructionIndex <= -2)
                 throw new Error("Jump out of bounds");
         };
         this._instructions = instructions;
