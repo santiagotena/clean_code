@@ -1,6 +1,5 @@
 export class AssemblerInterpreter {
     constructor(instructions) {
-        this.integerLimit = 99;
         this._registers = {};
         this.execute = () => {
             this._processInstructions();
@@ -39,19 +38,13 @@ export class AssemblerInterpreter {
             this._registers[register]--;
         };
         this._jumpToInstruction = (register, steps) => {
-            if (this._isRegisterValueInvalid(register))
+            if (this._isRegisterEqualToZero(register))
                 return;
             this._shiftCurrentInstructionIndex(steps);
             this._assertNewIndexIsValid();
         };
-        this._isRegisterValueInvalid = (register) => {
-            return (this._isRegisterEqualToZero(register) || this._isRegisterOverLimit(register));
-        };
         this._isRegisterEqualToZero = (register) => {
             return this._registers[register] == 0;
-        };
-        this._isRegisterOverLimit = (register) => {
-            return (this._registers[register] == this.integerLimit || this._registers[register] == -this.integerLimit);
         };
         this._shiftCurrentInstructionIndex = (steps) => {
             if (isNaN(steps))

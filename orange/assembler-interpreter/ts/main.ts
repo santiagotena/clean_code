@@ -1,5 +1,4 @@
 export class AssemblerInterpreter {
-    integerLimit : number = 99;
     private _instructions : Array<string>;
     private _currentInstructionIndex : number;
     private _currentInstruction : Array<string>;
@@ -53,22 +52,14 @@ export class AssemblerInterpreter {
     }
 
     private _jumpToInstruction = (register : string, steps) : void => {
-        if (this._isRegisterValueInvalid(register))
+        if (this._isRegisterEqualToZero(register))
             return;
         this._shiftCurrentInstructionIndex(steps);
         this._assertNewIndexIsValid();
     }
 
-    private _isRegisterValueInvalid = (register : string) : boolean => {
-        return (this._isRegisterEqualToZero(register) || this._isRegisterOverLimit(register));
-    }
-
     private _isRegisterEqualToZero = (register : string) : boolean => {
         return this._registers[register] == 0
-    }
-
-    private _isRegisterOverLimit = (register : string) : boolean => {
-        return (this._registers[register] == this.integerLimit || this._registers[register] == -this.integerLimit)
     }
 
     private _shiftCurrentInstructionIndex = (steps) : void => {

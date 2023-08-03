@@ -87,24 +87,6 @@ describe('out of bounds checks', () => {
     });
 });
 
-describe('escape infinite loops', () => {
-    test('positive', () => {
-        const input = ["mov a 5", "inc a", "inc a", "jnz a -1", "inc a"];
-        const assemblerInterpreter = new AssemblerInterpreter(input);
-        expect(assemblerInterpreter.execute()).toEqual({
-            'a' : assemblerInterpreter.integerLimit + 1
-        });
-    });
-
-    test('negative', () => {
-        const input = ["mov a -5", "dec a", "dec a", "jnz a -1", "inc a"];
-        const assemblerInterpreter = new AssemblerInterpreter(input);
-        expect(assemblerInterpreter.execute()).toEqual({
-            'a' : -assemblerInterpreter.integerLimit + 1
-        });
-    });
-});
-
 describe('multiple active registers', () => {
     test('test 1', () => {
         const input = ["mov a 5", "dec a", "mov c 41", "dec a", "inc c", "mov b 25"];
