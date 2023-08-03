@@ -2,7 +2,7 @@ export class AssemblerInterpreter {
     private _instructions : Array<string>;
     private _currentInstructionIndex : number;
     private _currentInstruction : Array<string>;
-    private _registers : Object = {};
+    private _registersTable : Object = {};
 
     constructor(instructions : Array<string>) {
         this._instructions = instructions;
@@ -10,7 +10,7 @@ export class AssemblerInterpreter {
 
     execute = () : Object => {
         this._processInstructions();
-        return this._registers;
+        return this._registersTable;
     }
 
     private _processInstructions = () => {
@@ -30,25 +30,25 @@ export class AssemblerInterpreter {
             this._copyToRegister(this._currentInstruction[1], this._currentInstruction[2]);
         else if (this._currentInstruction[0] === "inc")
             this._increaseRegister(this._currentInstruction[1]);
-        else if (this._currentInstruction[0] == "dec")
+        else if (this._currentInstruction[0] === "dec")
             this._decreaseRegister(this._currentInstruction[1]);
-        else if (this._currentInstruction[0] == "jnz")
+        else if (this._currentInstruction[0] === "jnz")
             this._jumpToInstruction(this._currentInstruction[1], this._currentInstruction[2]);
     }
 
     private _copyToRegister = (register : string, value) : void => {
         if (isNaN(value))
-            this._registers[register] = this._registers[value];
+            this._registersTable[register] = this._registersTable[value];
         else
-           this._registers[register] = Number(value);
+           this._registersTable[register] = Number(value);
     }
 
     private _increaseRegister = (register : string) : void => {
-        this._registers[register]++;
+        this._registersTable[register]++;
     }
 
     private _decreaseRegister = (register : string) : void => {
-        this._registers[register]--;
+        this._registersTable[register]--;
     }
 
     private _jumpToInstruction = (register : string, steps) : void => {
@@ -59,12 +59,12 @@ export class AssemblerInterpreter {
     }
 
     private _isRegisterEqualToZero = (register : string) : boolean => {
-        return this._registers[register] == 0
+        return this._registersTable[register] == 0
     }
 
     private _shiftCurrentInstructionIndex = (steps) : void => {
         if (isNaN(steps))
-            steps = this._registers[steps];
+            steps = this._registersTable[steps];
         this._currentInstructionIndex += steps - 1;
     }
 

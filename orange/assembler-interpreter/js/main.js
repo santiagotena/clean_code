@@ -1,9 +1,9 @@
 export class AssemblerInterpreter {
     constructor(instructions) {
-        this._registers = {};
+        this._registersTable = {};
         this.execute = () => {
             this._processInstructions();
-            return this._registers;
+            return this._registersTable;
         };
         this._processInstructions = () => {
             this._currentInstructionIndex = 0;
@@ -20,22 +20,22 @@ export class AssemblerInterpreter {
                 this._copyToRegister(this._currentInstruction[1], this._currentInstruction[2]);
             else if (this._currentInstruction[0] === "inc")
                 this._increaseRegister(this._currentInstruction[1]);
-            else if (this._currentInstruction[0] == "dec")
+            else if (this._currentInstruction[0] === "dec")
                 this._decreaseRegister(this._currentInstruction[1]);
-            else if (this._currentInstruction[0] == "jnz")
+            else if (this._currentInstruction[0] === "jnz")
                 this._jumpToInstruction(this._currentInstruction[1], this._currentInstruction[2]);
         };
         this._copyToRegister = (register, value) => {
             if (isNaN(value))
-                this._registers[register] = this._registers[value];
+                this._registersTable[register] = this._registersTable[value];
             else
-                this._registers[register] = Number(value);
+                this._registersTable[register] = Number(value);
         };
         this._increaseRegister = (register) => {
-            this._registers[register]++;
+            this._registersTable[register]++;
         };
         this._decreaseRegister = (register) => {
-            this._registers[register]--;
+            this._registersTable[register]--;
         };
         this._jumpToInstruction = (register, steps) => {
             if (this._isRegisterEqualToZero(register))
@@ -44,11 +44,11 @@ export class AssemblerInterpreter {
             this._assertNewIndexIsValid();
         };
         this._isRegisterEqualToZero = (register) => {
-            return this._registers[register] == 0;
+            return this._registersTable[register] == 0;
         };
         this._shiftCurrentInstructionIndex = (steps) => {
             if (isNaN(steps))
-                steps = this._registers[steps];
+                steps = this._registersTable[steps];
             this._currentInstructionIndex += steps - 1;
         };
         this._assertNewIndexIsValid = () => {
