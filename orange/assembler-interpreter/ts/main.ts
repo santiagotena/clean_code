@@ -70,7 +70,7 @@ export class AssemblerInterpreter {
 
     private _assertNewIndexIsValid = () : void => {
         if (this._currentInstructionIndex >= this._instructions.length - 1 || this._currentInstructionIndex <= -2)
-            throw new Error("Jump out of bounds");
+            throw new Error("Error: Jump out of bounds");
     }
 }
 

@@ -66,14 +66,14 @@ describe('out of bounds checks', () => {
             const input = ["mov a 5", "jnz a 3", "inc a", "inc a"];
             const assemblerInterpreter = new AssemblerInterpreter(input);
             assemblerInterpreter.execute();
-        }).toThrow("Jump out of bounds");
+        }).toThrow("Error: Jump out of bounds");
     });
     test('jump backward', () => {
         expect(() => {
             const input = ["mov a 5", "inc a", "dec a", "dec a", "jnz a -5", "inc a"];
             const assemblerInterpreter = new AssemblerInterpreter(input);
             assemblerInterpreter.execute();
-        }).toThrow("Jump out of bounds");
+        }).toThrow("Error: Jump out of bounds");
     });
 });
 describe('multiple active registers', () => {
